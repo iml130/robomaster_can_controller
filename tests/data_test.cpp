@@ -43,8 +43,8 @@ TEST(DataTest, DecodeDataEsc) {
     ASSERT_EQ(esc.speed[3], 3);
 
     ASSERT_EQ(esc.angle[0], 10);
-    ASSERT_EQ(esc.angle[1], -11); // negative because of the wheel order and direction
-    ASSERT_EQ(esc.angle[2], -12); // negative because of the wheel order and direction
+    ASSERT_EQ(esc.angle[1], 11);
+    ASSERT_EQ(esc.angle[2], 12);
     ASSERT_EQ(esc.angle[3], 13);
 
     ASSERT_EQ(esc.time_stamp[0], 20);

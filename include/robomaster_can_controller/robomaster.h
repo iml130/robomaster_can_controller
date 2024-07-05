@@ -49,6 +49,13 @@ private:
      * @param msg The RoboMasterState message.
      */
     void decodeDataRoboMasterState(const Message &msg);
+    /**
+     * @brief look up the message index byte for the given servo index.
+     * 
+     * @param index Servo index from 1 to 4.
+     * @return uint8_t Message index byte.
+     */
+    uint8_t servoIndexTable(const uint8_t index);
 public:
     /**
      * @brief Constructor of the RoboMaster class.
@@ -176,6 +183,81 @@ public:
      * @param rate The rate of the flash effect.
      */
     void commandLedFlash(const uint16_t mask, const uint8_t r, const uint8_t g, const uint8_t b, const float rate);
+
+    /**
+     * @brief Set the angle of the servo by the given index.
+     * 
+     * @param index Index of the servo from 1 to 3.
+     * @param angle Angle between -180-180.
+     */
+    void commandServoAngle(const uint8_t index, const int32_t angle);
+
+    /**
+     * @brief Set the angle of the servo by the given index.
+     * 
+     * @param index Index of the servo from 1 to 3.
+     * @param angle Angle between -180.0-180.0.
+     */
+    void commandServoAngle(const uint8_t index, const float angle);
+
+    /**
+     * @brief Set the speed  of the servo by the given index.
+     * 
+     * @param index Index of the servo from 1 to 3.
+     * @param speed Speed between -12-12 rotation per minute.
+     */
+    void commandServoSpeed(const uint8_t index, const int32_t speed);
+
+    /**
+     * @brief Set the speed of the servo by the given index.
+     * 
+     * @param index Index of the servo from 1 to 3.
+     * @param speed Speed between -12.0-12.0 roation per minute.
+     */
+    void commandServoSpeed(const uint8_t index, const float speed);
+
+    /**
+     * @brief Stop the servo by the given index.
+     * 
+     * @param index Index of the servo from 1 to 3.
+     */
+    void commandServoStop(const uint8_t index);
+
+    /**
+     * @brief Set the pwm frequence of the motion controller channel in the range of 0-50000 hertz.
+     * 
+     * @param freq1 Frequence of the pwm channel 1.
+     * @param freq2 Frequence of the pwm channel 2.
+     * @param freq3 Frequence of the pwm channel 3.
+     * @param freq4 Frequence of the pwm channel 4.
+     * @param freq5 Frequence of the pwm channel 5.
+     * @param freq6 Frequence of the pwm channel 6.
+     */
+    void commandPwmFrequenz(const uint16_t freq1, const uint16_t freq2, const uint16_t freq3, const uint16_t freq4, const uint16_t freq5, const uint16_t freq6);
+
+    /**
+     * @brief Set the pwm dutycycle of the moton controller channels in the range of 0-100 percent.
+     * 
+     * @param value1 Dutycycle of the pwm channel 1.
+     * @param value2 Dutycycle of the pwm channel 2.
+     * @param value3 Dutycycle of the pwm channel 3.
+     * @param value4 Dutycycle of the pwm channel 4.
+     * @param value5 Dutycycle of the pwm channel 5.
+     * @param value6 Dutycycle of the pwm channel 6.
+     */
+    void commandPwmValue(const uint16_t value1, const uint16_t value2, const uint16_t value3, const uint16_t value4, const uint16_t value5, const uint16_t value6);
+
+    /**
+     * @brief Set the pwm dutycycle of the moton controller channels in the range of 0.0-100.0 percent
+     * 
+     * @param value1 Dutycycle of the pwm channel 1.
+     * @param value2 Dutycycle of the pwm channel 2.
+     * @param value3 Dutycycle of the pwm channel 3.
+     * @param value4 Dutycycle of the pwm channel 4.
+     * @param value5 Dutycycle of the pwm channel 5.
+     * @param value6 Dutycycle of the pwm channel 6.
+     */
+    void commandPwmValue(const float value1, const float value2, const float value3, const float value4, const float value5, const float value6);
 
     /**
      * @brief Bind a function to the callbackfunction which get triggered when a new RoboMasterState message is received.

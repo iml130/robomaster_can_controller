@@ -18,7 +18,7 @@ namespace robomaster_can_controller
 {
 
 /**
- * @brief Struct for the data of the ESC from the RoboMaster. The data array is ordered in front right, front left and rear right.
+ * @brief Struct for the data of the ESC from the RoboMaster. The data array is ordered in front right, front left, rear left and rear right.
  */
 struct DataEsc{
     /**

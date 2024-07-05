@@ -61,6 +61,13 @@ PYBIND11_MODULE(robomaster_can_controller_py, m) {
     py_robomaster.def("led_off", [](RoboMaster &robomaster){
         robomaster.commandLedOff(LED_MASK_ALL);
     });
+    py_robomaster.def("servo_angle", pybind11::overload_cast<const uint8_t, const float>(&RoboMaster::commandServoAngle), pybind11::arg("id"), pybind11::arg("angle"));
+    py_robomaster.def("servo_speed", pybind11::overload_cast<const uint8_t, const float>(&RoboMaster::commandServoSpeed), pybind11::arg("id"), pybind11::arg("speed"));
+    py_robomaster.def("servo_stop", &RoboMaster::commandServoStop, pybind11::arg("id"));
+    py_robomaster.def("pwm_frequenz", &RoboMaster::commandPwmFrequenz, 
+        pybind11::arg("freq1")=0, pybind11::arg("freq2")=0, pybind11::arg("freq3")=0, pybind11::arg("freq4")=0, pybind11::arg("freq5")=0, pybind11::arg("freq6")=0);
+    py_robomaster.def("pwm_value", pybind11::overload_cast<const float ,const float, const float, const float, const float, const float> (&RoboMaster::commandPwmValue), 
+        pybind11::arg("v1")=0.0f, pybind11::arg("v2")=0.0f, pybind11::arg("v3")=0.0f, pybind11::arg("v4")=0.0f, pybind11::arg("v5")=0.0f, pybind11::arg("v6")=0.0f);
     py_robomaster.def("bind", [](RoboMaster &robomaster, const std::function<void(const DataRoboMasterState &)> &func){
         robomaster.bindCallbackDataRobotMasterState(func);
     });

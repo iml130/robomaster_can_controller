@@ -41,8 +41,8 @@ struct DataEsc decodeDataEsc(const size_t index, const Message &msg)
         data.speed[2]      =  msg.getValueInt16 (index +  4);
         data.speed[3]      =  msg.getValueInt16 (index +  6);
         data.angle[0]      =  msg.getValueInt16 (index +  8);
-        data.angle[1]      = -msg.getValueInt16 (index + 10);
-        data.angle[2]      = -msg.getValueInt16 (index + 12);
+        data.angle[1]      =  msg.getValueInt16 (index + 10);
+        data.angle[2]      =  msg.getValueInt16 (index + 12);
         data.angle[3]      =  msg.getValueInt16 (index + 14);
         data.time_stamp[0] =  msg.getValueUInt32(index + 16);
         data.time_stamp[1] =  msg.getValueUInt32(index + 20);
@@ -86,9 +86,9 @@ struct DataAttitude decodeDataAttitude(const size_t index, const Message &msg)
     // Check the length of the index and then fill the data.
     if (index + 12 <= msg.getPayload().size())
     {
-        data.yaw  = msg.getValueFloat(index);
+        data.yaw   = msg.getValueFloat(index);
         data.pitch = msg.getValueFloat(index + 4);
-        data.roll   = msg.getValueFloat(index + 8);
+        data.roll  = msg.getValueFloat(index + 8);
 
         data.has_data = true;
     }
