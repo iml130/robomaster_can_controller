@@ -25,13 +25,13 @@ sudo apt install gtest-dev
 
 ## Usage C++
 
-Build the library and use the given example to test the library on the RoboMaster:
+Build the library with python bindings and tests enabled: 
 
 ```sh
 cd robomaster_can_controller
 mkdir build
 cd build
-cmake ..
+cmake .. -DBUILD_PYTHON_BINDINGS=ON -DBUILD_RUN_TESTS=ON
 make 
 ```
 
