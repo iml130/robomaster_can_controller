@@ -136,10 +136,13 @@ void Message::setValueFloat(const size_t index, const float value)
 {
     assert(index + 3 < this->payload_.size());
 
-    float non_const_value = value;
-    const uint32_t float_bits = *reinterpret_cast<uint32_t*>(&non_const_value);
+    union {
+        uint32_t u;
+        float f;
+    } float_uint32_t_union;
 
-    this->setValueUInt32(index, float_bits);
+    float_uint32_t_union.f = value;
+    this->setValueUInt32(index, float_uint32_t_union.u);
 }
 
 
@@ -201,8 +204,13 @@ float Message::getValueFloat(const size_t index) const
 {
     assert(index + 3 < this->payload_.size());
 
-    uint32_t value = this->getValueUInt32(index);
-    return *reinterpret_cast<float*>(&value);
+    union {
+        uint32_t u;
+        float f;
+    } float_uint32_t_union;
+
+    float_uint32_t_union.u = this->getValueUInt32(index);
+    return float_uint32_t_union.f;
 }
 
 void Message::setPayload(const std::vector<uint8_t> &payload)

@@ -113,10 +113,6 @@ The Python class RoboMaster is implemented as Python bindings of the C++ class w
 | `pwm_frequenz(freq1: int=0, freq2: int=0, freq3: int=0, freq4: int=0, freq5: int=0, freq6: int=0)` | Set the PWM frequency of the motion controller channels in the range of 0-50000 Hz. |
 | `pwm_value(v1: float=0.0, v2: float=0.0, v3: float=0.0, v4: float=0.0, v5: float=0.0, v6: float=0.0)` | Set the PWM duty cycle of the motion controller channels in the range of 0.0-100.0 percent. |
 
-## Licensing
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Struct DataRoboMasterState
 
 The struct DataRoboMasterState represents the state of the RoboMaster, passed by the registered callback function.
